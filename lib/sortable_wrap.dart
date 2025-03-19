@@ -8,6 +8,7 @@ class SortableWrap extends StatefulWidget {
     required this.children,
     required this.onSorted,
     this.onSortStart,
+    this.alignment,
     this.onSortCancel,
     this.spacing = 0.0,
     this.runSpacing = 0.0,
@@ -15,6 +16,7 @@ class SortableWrap extends StatefulWidget {
   }) : super(key: key);
 
   final List<Widget> children;
+  final WrapAlignment alignment;
 
   /// Events
   final void Function(int oldIndex, int newIndex) onSorted;
@@ -112,6 +114,7 @@ class SortableWrapState extends State<SortableWrap> {
       builder: (context) {
         wrapperContext = context;
         return Wrap(
+          alignment: widget.alignment,
           spacing: widget.spacing,
           runSpacing: widget.runSpacing,
           children: animationElements.map((e) => enclosedWithDraggable(e)).toList(),
